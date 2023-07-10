@@ -1,0 +1,6 @@
+*.o
+*.pem
+client
+server
+trilogy
+report.xml

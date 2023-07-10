@@ -1,0 +1,28 @@
+services:
+  server:
+    #image: mysql:5.7-debian
+    build:
+      context: .
+      target: server
+      #target: debian-stretch
+    expose:
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: verysecret
+      #MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  #server:
+  #  build:
+  #    context: .
+  #    #target: ubuntu-focal
+  #    target: debian-stretch
+  #  ports:
+  #    - "3306:3306"
+  #  command: /bin/sh -c "./server '*' 3306"
+
+  client:
+    build:
+      context: .
+      target: client 
+      #target: debian-stretch
+    command: /bin/sh -c "sleep 1; ./client 1 server 3306 root verysecret mysql 'SELECT NULL LIMIT 0;'"
